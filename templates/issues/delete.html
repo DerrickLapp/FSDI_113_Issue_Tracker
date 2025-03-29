@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Delete Issue{% endblock title %}
+
+{% block content %}
+<h1>Delete Issue Confirmation</h1>
+<p>Are you sure you'd like to delete the issue: "{{ issue.name }}" ?</p>
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-danger deletebtn" value="Confirm">
+    <a href="{% url 'board' %}" class="card-link">Back</a>
+
+</form>
+{% endblock content %}

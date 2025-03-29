@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{ issue.name }}{% endblock title %}
+
+{% block content %}
+<h1>{{ issue.name }}</h1>
+<h3>{{ issue.summary }}</h3>
+<small>Created On: {{ issue.created_on }}</small>
+<p>{{ issue.description }}</p>
+<a href="{% url 'edit' issue.id %}" class="card-link">Edit</a>
+<a href="{% url 'delete' issue.id %}" class="card-link">Delete</a>
+<a href="{% url 'board' %}" class="card-link">Back</a>
+{% endblock content %}

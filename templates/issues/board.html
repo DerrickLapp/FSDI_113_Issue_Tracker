@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Issues{% endblock title %}
+
+{% block content %}
+<h1>Issues</h1>
+<a href="{% url 'new' %}" class="issueLinks">List New Issue</a>
+
+<div class="row">
+    <div class="col-4">
+        <h4>To-Do</h4>
+        {% for issue in to_do_list %}
+        <div class="row">
+            <div class="card issue-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ issue.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.summary }}</h6>
+                    <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
+                    <h5 class="card-subtitle">By: {{ issue.reporter }}</h5>
+                    <a href="{% url 'detail' issue.id %}">More Details...</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-4">
+        <h4>In-Progress</h4>
+        {% for issue in in_progress_list %}
+        <div class="card issue-card">
+            <div class="card-body">
+                <h5 class="card-title">{{ issue.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.summary }}</h6>
+                <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
+                <h5 class="card-subtitle">By: {{ issue.reporter }}</h5>
+                <a href="{% url 'detail' issue.id %}">More Details...</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col-4">
+        <h4>Done</h4>
+        {% for issue in done_list %}
+        <div class="card issue-card">
+            <div class="card-body">
+                <h5 class="card-title">{{ issue.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.summary }}</h6>
+                <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
+                <h5 class="card-subtitle">By: {{ issue.reporter }}</h5>
+                <a href="{% url 'detail' issue.id %}">More Details...</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
