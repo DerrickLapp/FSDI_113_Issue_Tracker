@@ -14,13 +14,26 @@ def populate_status(apps, schemaeditor):
         role_obj = Status(name=key, description=value)
         role_obj.save()
 
+def populate_priority(apps, schemaeditor):
+    entries = {
+        "high": "A high priority issue that needs to be addressed immediately.",
+        "medium": "A mid-level priority issue that needs to be addressed soon.",
+        "low": "A low priority issue that can wait until other more immediate issues are resolved."
+    }
+    Priority = apps.get_model("issues", "Priority")
+    for key, value in entries.items():
+        prio_obj = Priority(name=key, description=value)
+        prio_obj.save()
+
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('issues', '0001_initial'),
+        ('issues', '0002_priority_issue_priority'),
     ]
 
     operations = [
         migrations.RunPython(populate_status),
+        migrations.RunPython(populate_priority),
     ]
+
