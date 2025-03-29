@@ -35,6 +35,13 @@ body {
     margin-bottom: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
+    width: 300px; /* Fixed width */
+    height: 200px; /* Fixed height */
+    display: flex !important;
+    flex-direction: column !important; /* Ensures content stacks vertically */
+    justify-content: space-between !important; /* Distributes content evenly */
+    overflow: hidden; /* Hides overflowing content */
+  
 }
 
 .issue-card:hover {
@@ -44,18 +51,28 @@ body {
 
 .issue-card h5 {
     font-size: 1.5em;
-    margin: 0;
     color: #e0e0e0;
 }
 
 .issue-card h6 {
     color: #e0e0e0 !important;
+    margin-bottom: 5px !important;
 }
 
 .issue-card p {
     font-size: 1em;
     margin: 10px 0 0;
     color: #a0a0a0;
+    margin-bottom: 5px !important;
+}
+
+.card-body {
+    flex-grow: 1; /* Allows the content to expand */
+    overflow-y: auto; /* Adds scroll for long content */ 
+}
+
+.card-link {
+    margin-top: 30px !important;
 }
 
 /* Buttons */
