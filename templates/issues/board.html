@@ -5,7 +5,12 @@
 
 {% block content %}
 <h1>Issues</h1>
+
+<!-- This ensures only product owners can create new issues -->
+{% if user.role.name == "product owner" %} 
+<h4>Problem with your product?</h4>
 <a href="{% url 'new' %}" class="issueLinks">List New Issue</a>
+{% endif %}
 
 <div class="row">
     <div class="col-4">
@@ -31,7 +36,7 @@
         <div class="card issue-card">
             <div class="card-body">
                 <h5 class="card-title">{{ issue.name }}</h5>
-                <h5 class="card-title">{{ issue.priority }}</h5>
+                <h5 class="card-title prio">{{ issue.priority }}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.summary }}</h6>
                 <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
                 <h5 class="card-subtitle">By: {{ issue.reporter }}</h5>

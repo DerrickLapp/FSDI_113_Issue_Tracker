@@ -16,17 +16,18 @@ from django.contrib.auth.mixins import (
 class IssueCreateView(LoginRequiredMixin, CreateView):
     template_name = "issues/new.html"
     model = Issue
-    fields = ["name", "summary", "description", "assignee", "status"]
+    fields = ["name", "summary", "description", "assignee", "priority", "status"]
 
     def form_valid(self, form):
         form.instance.reporter = self.request.user
         return super().form_valid(form)
     
+    
 class IssueUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "issues/edit.html"
     model = Issue
     fields = [
-        "name", "summary", "description", "assignee", "status"
+        "name", "summary", "description", "assignee", "priority", "status"
     ]
 
     def test_func(self):
@@ -51,19 +52,23 @@ class BoardView(LoginRequiredMixin, ListView):
         to_do = Status.objects.get(name="to-do")
         in_progress = Status.objects.get(name="in-progress")
         done = Status.objects.get(name="done")
+        user_team = self.request.user.team
         context["to_do_list"] = (
             Issue.objects
             .filter(status=to_do)
+            .filter(assignee__team=user_team)
             .order_by("created_on").reverse()
         )
         context["in_progress_list"] = (
             Issue.objects
             .filter(status=in_progress)
+            .filter(assignee__team=user_team)
             .order_by("created_on").reverse()
         )
         context["done_list"] = (
             Issue.objects
             .filter(status=done)
+            .filter(assignee__team=user_team)
             .order_by("created_on").reverse()
         )
         return context

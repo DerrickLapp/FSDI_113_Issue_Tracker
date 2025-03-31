@@ -34,7 +34,10 @@
             </div>
             </div>
         </div>
-      <div class="username"><i class="bi bi-person-fill"></i>{{ user }}</div>
+      <div class="username">
+        <i class="bi bi-person-fill"></i>{{ user }}
+        <a href="{% url 'passchange' %}" class="card-link">Change Password</a>
+      </div>
     </nav>
 
 

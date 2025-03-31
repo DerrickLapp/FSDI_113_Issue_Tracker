@@ -27,3 +27,5 @@ class CustomUser(AbstractUser):
         on_delete=models.CASCADE,
         blank=True, null=True
     )
+    def has_role(self, role_name):
+        return self.role and self.role.name == role_name

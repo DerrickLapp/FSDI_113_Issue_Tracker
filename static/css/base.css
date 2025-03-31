@@ -122,3 +122,11 @@ a {
     outline: none; /* Remove outline */
     box-shadow: 0 0 10px #1c77e3; /* Glow for focused links */
   }
+
+  .prio {
+    text-transform: capitalize !important;
+  }
+
+  .row {
+    margin-top: 15px !important;
+  }

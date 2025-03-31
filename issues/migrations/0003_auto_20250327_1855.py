@@ -16,9 +16,9 @@ def populate_status(apps, schemaeditor):
 
 def populate_priority(apps, schemaeditor):
     entries = {
-        "high": "A high priority issue that needs to be addressed immediately.",
-        "medium": "A mid-level priority issue that needs to be addressed soon.",
-        "low": "A low priority issue that can wait until other more immediate issues are resolved."
+        "High": "A high priority issue that needs to be addressed immediately.",
+        "Medium": "A mid-level priority issue that needs to be addressed soon.",
+        "Low": "A low priority issue that can wait until other more immediate issues are resolved."
     }
     Priority = apps.get_model("issues", "Priority")
     for key, value in entries.items():
